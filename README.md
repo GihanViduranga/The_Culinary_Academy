@@ -1,4 +1,4 @@
-🍽️ Culinary Academy Registration System
+#🍽️ Culinary Academy Registration System
 Welcome to the Culinary Academy Registration System! 🌟 This project is designed to simplify and digitalize the student enrollment process at The Culinary Academy. From managing courses to tracking payments, this system ensures a smooth and efficient workflow for both students and administrators.
 
 Built with ❤️ using Hibernate, this system brings the flavor of modern technology to the culinary world!
