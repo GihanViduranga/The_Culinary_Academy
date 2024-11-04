@@ -12,15 +12,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LoginController {
-
     @FXML
     private AnchorPane root;
 
     @FXML
-    private TextField txtAdminId;
+    private PasswordField txtPasswoard;
 
     @FXML
-    private PasswordField txtPasswoard;
+    private TextField txtUsername;
 
     @FXML
     void btnLoginInOnAction(ActionEvent event) throws IOException {
@@ -33,6 +32,11 @@ public class LoginController {
         stage.setScene(scene);
         stage.setTitle("Customer Form");
         stage.show();
+    }
+
+    @FXML
+    void forgetPasswordOnAction(ActionEvent event) {
+
     }
 
 }

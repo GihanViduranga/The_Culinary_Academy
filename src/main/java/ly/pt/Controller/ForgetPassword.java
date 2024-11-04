@@ -6,19 +6,22 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-public class Login {
+public class ForgetPassword {
 
     @FXML
     private AnchorPane root;
 
     @FXML
-    private TextField txtAdminId;
+    private PasswordField txtNewPassword;
 
     @FXML
-    private PasswordField txtPasswoard;
+    private TextField txtQuetion;
 
     @FXML
-    void btnLoginInOnAction(ActionEvent event) {
+    private PasswordField txtReEnterPasswoard;
+
+    @FXML
+    void btnConfirmOnAction(ActionEvent event) {
 
     }
 
