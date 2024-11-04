@@ -15,10 +15,10 @@ public class ForgetPassword {
     private PasswordField txtNewPassword;
 
     @FXML
-    private TextField txtQuetion;
+    private TextField txtQuestion;
 
     @FXML
-    private PasswordField txtReEnterPasswoard;
+    private PasswordField txtReEnterPassword;
 
     @FXML
     void btnConfirmOnAction(ActionEvent event) {
