@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="root" prefHeight="869.0" prefWidth="1467.0" styleClass="ChiledBackground" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ly.pt.Controller.StudentRegistration">
+    <children>
+        <Text fill="WHITE" layoutX="432.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STUDENT REGISTRATION">
+            <font>
+                <Font name="Arial Bold" size="48.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="108.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student ID">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="108.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Name">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="108.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of Birth">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="108.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Text>
+        <JFXButton buttonType="RAISED" layoutX="1027.0" layoutY="435.0" onAction="#btnAddToTableOnAction" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #009432;" text="ADD TO TABLE" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </JFXButton>
+        <JFXButton buttonType="RAISED" layoutX="1213.0" layoutY="764.0" onAction="#btnRegisterOnAction" prefHeight="51.0" prefWidth="206.0" style="-fx-background-color: #d35400;" text="REGISTER" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </JFXButton>
+      <Text fill="WHITE" layoutX="107.0" layoutY="386.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="108.0" layoutY="429.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="cmbStudentID" layoutX="247.0" layoutY="161.0" onAction="#cmbStudentIdOnAction" prefWidth="150.0" promptText="Student ID">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow />
+         </effect>
+      </ComboBox>
+      <Label fx:id="lblStudentName" layoutX="247.0" layoutY="213.0" prefHeight="27.0" prefWidth="262.0" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDateOfBirth" layoutX="247.0" layoutY="264.0" prefHeight="27.0" prefWidth="262.0" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblAddress" layoutX="247.0" layoutY="315.0" prefHeight="27.0" prefWidth="262.0" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPhoneNumber" layoutX="247.0" layoutY="365.0" prefHeight="27.0" prefWidth="262.0" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblEmail" layoutX="247.0" layoutY="408.0" prefHeight="27.0" prefWidth="262.0" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Text fill="WHITE" layoutX="579.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Program Name">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="cmbProgramName" layoutX="752.0" layoutY="161.0" onAction="#cmbProgramNameOnAction" prefHeight="27.0" prefWidth="174.0" promptText="Program Name">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow />
+         </effect>
+      </ComboBox>
+      <Text fill="WHITE" layoutX="579.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblDuration" layoutX="752.0" layoutY="214.0" prefHeight="27.0" prefWidth="174.0" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Text fill="WHITE" layoutX="579.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Program Fee">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblProgramFee" layoutX="752.0" layoutY="264.0" prefHeight="27.0" prefWidth="174.0" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Text fill="WHITE" layoutX="579.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Paid Amount">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtPaidAmount" layoutX="752.0" layoutY="315.0" prefHeight="27.0" prefWidth="174.0" />
+      <Text fill="WHITE" layoutX="942.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Program ID">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblProgramID" layoutX="1063.0" layoutY="161.0" prefHeight="27.0" prefWidth="174.0" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Text fill="WHITE" layoutX="942.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblBalance" layoutX="1063.0" layoutY="316.0" prefHeight="27.0" prefWidth="174.0" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Text fill="WHITE" layoutX="579.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="cmbSelectStatus" layoutX="752.0" layoutY="365.0" onAction="#cmbSelectStatusOnAction" prefHeight="27.0" prefWidth="174.0" promptText="Select Status">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow />
+         </effect>
+      </ComboBox>
+      <TableView fx:id="tblStudentRegistration" layoutX="178.0" layoutY="496.0" prefHeight="319.0" prefWidth="988.0">
+        <columns>
+          <TableColumn fx:id="colProgramID" prefWidth="111.0" text="Program ID" />
+          <TableColumn fx:id="colProgramName" prefWidth="208.0" text="Program Name" />
+            <TableColumn fx:id="colProgramFee" prefWidth="171.0" text="Program Fee" />
+            <TableColumn fx:id="colPaidAmount" prefWidth="171.0" text="Paid Amount" />
+            <TableColumn fx:id="colBalance" prefWidth="171.0" text="Balance" />
+            <TableColumn fx:id="colStatus" prefWidth="155.0" text="Status" />
+        </columns>
+      </TableView>
+      <JFXButton buttonType="RAISED" layoutX="414.0" layoutY="160.0" onAction="#btnAddNewOnAction" prefHeight="30.0" prefWidth="68.0" style="-fx-background-color: #009432;" text="+ NEW" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <Text fill="WHITE" layoutX="1213.0" layoutY="542.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TOTAL AMOUNT:-">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblTotal" layoutX="1213.0" layoutY="569.0" prefHeight="51.0" prefWidth="174.0" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>
