@@ -8,10 +8,10 @@ import javafx.scene.layout.AnchorPane;
 public class DashboardController {
 
     @FXML
-    private AnchorPane ChildRoot;
+    private AnchorPane root;
 
     @FXML
-    private AnchorPane MainRoot;
+    private AnchorPane rootNode;
 
     @FXML
     private Label lblAdminCount;

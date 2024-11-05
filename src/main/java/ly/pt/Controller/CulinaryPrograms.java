@@ -11,7 +11,7 @@ import javafx.scene.layout.AnchorPane;
 public class CulinaryPrograms {
 
     @FXML
-    private AnchorPane Root;
+    private AnchorPane root;
 
     @FXML
     private Label lblProgramID;

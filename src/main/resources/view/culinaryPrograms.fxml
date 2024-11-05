@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="Root" prefHeight="869.0" prefWidth="1467.0" styleClass="ChiledBackground" stylesheets="@../Styles/Styles.css" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ly.pt.Controller.CulinaryPrograms">
+<AnchorPane fx:id="root" prefHeight="869.0" prefWidth="1467.0" styleClass="ChiledBackground" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ly.pt.Controller.CulinaryPrograms">
     <children>
         <Text fill="WHITE" layoutX="463.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CULINARY PROGRAMS">
             <font>

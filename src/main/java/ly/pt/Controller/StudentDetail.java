@@ -12,7 +12,7 @@ import javafx.scene.layout.AnchorPane;
 public class StudentDetail {
 
     @FXML
-    private AnchorPane Root;
+    private AnchorPane root;
 
     @FXML
     private DatePicker dtpDateOfBirth;

@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class LoginController {
     @FXML
-    private AnchorPane root;
+    private AnchorPane rootNode;
 
     @FXML
     private PasswordField txtPasswoard;
@@ -26,7 +26,7 @@ public class LoginController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Dashboard.fxml"));
         AnchorPane anchorPane = loader.load();
 
-        Stage stage = (Stage) root.getScene().getWindow();
+        Stage stage = (Stage) rootNode.getScene().getWindow();
         Scene scene = new Scene(anchorPane);
 
         stage.setScene(scene);
