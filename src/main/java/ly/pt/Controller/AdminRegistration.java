@@ -71,4 +71,9 @@ public class AdminRegistration {
         }
     }
 
+    @FXML
+    void btnChangeUsernameAndPasswordOnAction(ActionEvent event) {
+
+    }
+
 }
