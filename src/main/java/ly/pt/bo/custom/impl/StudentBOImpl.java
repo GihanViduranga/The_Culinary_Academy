@@ -12,4 +12,9 @@ public class StudentBOImpl implements StudentBO {
     public boolean saveStudent(StudentDTO studentDTO) {
         return studentDAO.saveStudent(new Student(studentDTO.getStudentId(),studentDTO.getStudentName(),studentDTO.getDateOfBirth(),studentDTO.getAddress(),studentDTO.getPhoneNumber(),studentDTO.getEmail()));
     }
+
+    @Override
+    public boolean updateStudent(StudentDTO studentDTO) {
+        return studentDAO.updateStudent(new Student(studentDTO.getStudentId(),studentDTO.getStudentName(),studentDTO.getDateOfBirth(),studentDTO.getAddress(),studentDTO.getPhoneNumber(),studentDTO.getEmail()));
+    }
 }

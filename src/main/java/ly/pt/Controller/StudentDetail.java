@@ -87,7 +87,25 @@ public class StudentDetail {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
+        String id = txtStudentID.getText();
+        String name = txtStudentName.getText();
+        String dateOfBirth = dtpDateOfBirth.getValue().toString();
+        String address = txtAddress.getText();
+        String phoneNumber = txtPhoneNumber.getText();
+        String email = txtEmail.getText();
 
+        StudentDTO studentDTO = new StudentDTO(id, name, dateOfBirth, address, phoneNumber, email);
+
+        try {
+            boolean isUpdated = studentBO.updateStudent(studentDTO);
+            if (isUpdated) {
+                new Alert(Alert.AlertType.INFORMATION, "Student updated!").show();
+            } else {
+                new Alert(Alert.AlertType.INFORMATION, "The data you entered is incorrect").show();
+            }
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
     }
 
 }
