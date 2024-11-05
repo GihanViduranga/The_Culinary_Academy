@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.BoxBlur?>
 <?import javafx.scene.effect.DropShadow?>
@@ -48,36 +48,6 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <Button layoutX="65.0" layoutY="534.0" mnemonicParsing="false" onAction="#btnCulinaryProgramsOnAction" prefHeight="37.0" prefWidth="287.0" style="-fx-background-color: #d35400;" text="Culinary Programs" underline="true">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <effect>
-            <DropShadow>
-               <color>
-                  <Color red="0.25" green="0.25" blue="0.25" />
-               </color>
-            </DropShadow>
-         </effect>
-         <font>
-            <Font name="System Bold Italic" size="18.0" />
-         </font>
-      </Button>
-      <Button layoutX="63.0" layoutY="732.0" mnemonicParsing="false" onAction="#btnAdminRegistrationOnAction" prefHeight="37.0" prefWidth="287.0" style="-fx-background-color: #d35400;" text="Admin Management" underline="true">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <effect>
-            <DropShadow>
-               <color>
-                  <Color red="0.25" green="0.25" blue="0.25" />
-               </color>
-            </DropShadow>
-         </effect>
-         <font>
-            <Font name="System Bold Italic" size="18.0" />
-         </font>
-      </Button>
       <ImageView fitHeight="299.0" fitWidth="300.0" layoutX="57.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ChefLogo.png" />
@@ -108,21 +78,6 @@
             <Image url="@../images/plan-calendar.gif" />
          </image>
       </ImageView>
-      <Button layoutX="65.0" layoutY="466.0" mnemonicParsing="false" onAction="#btnStudentProfilesOnAction" prefHeight="37.0" prefWidth="287.0" style="-fx-background-color: #d35400;" text="Student Profiles" underline="true">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <effect>
-            <DropShadow>
-               <color>
-                  <Color red="0.25" green="0.25" blue="0.25" />
-               </color>
-            </DropShadow>
-         </effect>
-         <font>
-            <Font name="System Bold Italic" size="18.0" />
-         </font>
-      </Button>
       <Label fx:id="lblDate" layoutX="158.0" layoutY="368.0" prefHeight="58.0" prefWidth="155.0">
          <effect>
             <DropShadow />
@@ -131,22 +86,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="65.0" layoutY="858.0" mnemonicParsing="false" onAction="#btnLogoutFromSystemOnAction" prefHeight="37.0" prefWidth="287.0" style="-fx-background-color: #d35400;" text="Logout From System" underline="true">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <effect>
-            <DropShadow>
-               <color>
-                  <Color red="0.25" green="0.25" blue="0.25" />
-               </color>
-            </DropShadow>
-         </effect>
-         <font>
-            <Font name="System Bold Italic" size="18.0" />
-         </font>
-      </Button>
-      <Text fill="#ecf0f1" layoutX="874.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Culinary Academy" underline="true">
+      <Text fill="#ecf0f1" layoutX="874.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="THE CULINARY ACADEMY" underline="true">
          <font>
             <Font name="Calibri Bold" size="64.0" />
          </font>
@@ -188,35 +128,61 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button layoutX="64.0" layoutY="601.0" mnemonicParsing="false" onAction="#btnPaymentSectionOnAction" prefHeight="37.0" prefWidth="287.0" style="-fx-background-color: #d35400;" text="Payment Section" underline="true">
+      <JFXButton buttonType="RAISED" layoutX="47.0" layoutY="444.0" onAction="#btnStudentRegistrationOnAction" prefHeight="38.0" prefWidth="319.0" style="-fx-background-color: #d35400;" text="STUDENT REGISTRATION" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
-         <effect>
-            <DropShadow>
-               <color>
-                  <Color red="0.25" green="0.25" blue="0.25" />
-               </color>
-            </DropShadow>
-         </effect>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="47.0" layoutY="501.0" onAction="#btnStudentProfileOnAction" prefHeight="38.0" prefWidth="319.0" style="-fx-background-color: #d35400;" text="STUDENT PROFILE" textFill="WHITE">
          <font>
-            <Font name="System Bold Italic" size="18.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
-      </Button>
-      <Button layoutX="63.0" layoutY="666.0" mnemonicParsing="false" onAction="#btnInterviewSheduleOnAction" prefHeight="37.0" prefWidth="287.0" style="-fx-background-color: #d35400;" text="Interview Shedule" underline="true">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
-         <effect>
-            <DropShadow>
-               <color>
-                  <Color red="0.25" green="0.25" blue="0.25" />
-               </color>
-            </DropShadow>
-         </effect>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="47.0" layoutY="558.0" onAction="#btnPaymentDetailsOnAction" prefHeight="38.0" prefWidth="319.0" style="-fx-background-color: #d35400;" text="PAYMENT DETAILS" textFill="WHITE">
          <font>
-            <Font name="System Bold Italic" size="18.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
-      </Button>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="47.0" layoutY="616.0" onAction="#btnCulinaryProgramsOnAction" prefHeight="38.0" prefWidth="319.0" style="-fx-background-color: #d35400;" text="CULINARY PROGREMS" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="50.0" layoutY="908.0" onAction="#btnLogOutOnAction" prefHeight="38.0" prefWidth="319.0" style="-fx-background-color: #d35400;" text="LOGOUT FROM SYSTEM" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="47.0" layoutY="708.0" onAction="#btnAdminRegistrationOnAction" prefHeight="38.0" prefWidth="319.0" style="-fx-background-color: #d35400;" text="ADMIN REGISTRATION" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="47.0" layoutY="762.0" onAction="#btnCoordinatorRegistrationOnAction" prefHeight="38.0" prefWidth="319.0" style="-fx-background-color: #d35400;" text="COORDINATOR REGISTRATION" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
    </children>
 </AnchorPane>

@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="869.0" prefWidth="1467.0" styleClass="ChiledBackground" stylesheets="@../Styles/Styles.css" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ly.pt.Controller.AdminRegistration">
+<AnchorPane fx:id="root" prefHeight="869.0" prefWidth="1467.0" styleClass="ChiledBackground" stylesheets="@../Styles/Styles.css" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ly.pt.Controller.AdminRegistration">
     <children>
         <Text fill="WHITE" layoutX="467.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADMIN REGISTRATION">
             <font>

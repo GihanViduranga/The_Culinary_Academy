@@ -34,27 +34,32 @@ public class DashboardController {
     }
 
     @FXML
+    void btnCoordinatorRegistrationOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
     void btnCulinaryProgramsOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void btnInterviewSheduleOnAction(ActionEvent event) {
+    void btnLogOutOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void btnLogoutFromSystemOnAction(ActionEvent event) {
+    void btnPaymentDetailsOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void btnPaymentSectionOnAction(ActionEvent event) {
+    void btnStudentProfileOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void btnStudentProfilesOnAction(ActionEvent event) {
+    void btnStudentRegistrationOnAction(ActionEvent event) {
 
     }
 

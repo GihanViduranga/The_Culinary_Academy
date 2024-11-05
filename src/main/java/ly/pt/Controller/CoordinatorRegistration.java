@@ -7,9 +7,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 public class CoordinatorRegistration {
 
+    public AnchorPane root;
     @FXML
     private Label lblCoordinatorID;
 
