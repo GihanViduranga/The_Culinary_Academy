@@ -45,7 +45,7 @@
                 <Font name="System Bold" size="18.0" />
             </font>
         </Text>
-        <Label fx:id="lblStudentID" layoutX="238.0" layoutY="211.0" prefHeight="27.0" prefWidth="219.0" textFill="WHITE">
+        <Label fx:id="lblStudentID" layoutX="110.0" layoutY="175.0" prefHeight="27.0" prefWidth="219.0" textFill="WHITE">
             <font>
                 <Font size="18.0" />
             </font></Label>
@@ -123,5 +123,16 @@
          </font>
       </TextField>
       <DatePicker fx:id="dtpDateOfBirth" layoutX="110.0" layoutY="398.0" prefHeight="30.0" prefWidth="272.0" />
+      <TextField fx:id="txtStudentID" layoutX="219.0" layoutY="207.0" prefHeight="27.0" prefWidth="272.0">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <effect>
+            <DropShadow />
+         </effect>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
     </children>
 </AnchorPane>

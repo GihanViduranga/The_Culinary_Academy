@@ -2,23 +2,22 @@ package ly.pt.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import ly.pt.bo.custom.StudentBO;
+import ly.pt.bo.custom.impl.StudentBOImpl;
+import ly.pt.model.StudentDTO;
 
 public class StudentDetail {
-
-    @FXML
-    private AnchorPane root;
 
     @FXML
     private DatePicker dtpDateOfBirth;
 
     @FXML
     private Label lblStudentID;
+
+    @FXML
+    private AnchorPane root;
 
     @FXML
     private TableColumn<?, ?> tblAddress;
@@ -51,7 +50,12 @@ public class StudentDetail {
     private TextField txtPhoneNumber;
 
     @FXML
+    private TextField txtStudentID;
+
+    @FXML
     private TextField txtStudentName;
+
+    StudentBO studentBO = new StudentBOImpl();
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
@@ -60,7 +64,25 @@ public class StudentDetail {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
+        String id = txtStudentID.getText();
+        String name = txtStudentName.getText();
+        String dateOfBirth = dtpDateOfBirth.getValue().toString();
+        String address = txtAddress.getText();
+        String phoneNumber = txtPhoneNumber.getText();
+        String email = txtEmail.getText();
 
+        StudentDTO studentDTO = new StudentDTO(id, name, dateOfBirth, address, phoneNumber, email);
+
+        try {
+            boolean isSaved = studentBO.saveStudent(studentDTO);
+            if (isSaved) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Student saved!").show();
+            } else {
+                new Alert(Alert.AlertType.INFORMATION, "The data you entered is incorrect").show();
+            }
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
     }
 
     @FXML
