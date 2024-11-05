@@ -1,6 +1,9 @@
 package ly.pt.entity;
 
-import jakarta.persistence.*;
+
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,22 +11,21 @@ import java.util.List;
 @Entity
 public class Student {
     @Id
-    private Student StudentId;
+    private String StudentId;
     private String StudentName;
     private String DateOfBirth;
     private String Address;
     private String PhoneNumber;
-
-    @Column(unique = true)
     private String Email;
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<StudentRegistration> studentRegistrations = new ArrayList<>();
+    /*@OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<StudentRegistration> studentRegistrations = new ArrayList<>();*/
 
-    public Student(String studentId, String studentName, String dateOfBirth, String address, String phoneNumber, String email) {
+    public Student() {
+
     }
 
-    public Student(Student studentId, String studentName, String dateOfBirth, String address, String phoneNumber, String email) {
+    public Student(String studentId, String studentName, String dateOfBirth, String address, String phoneNumber, String email) {
         StudentId = studentId;
         StudentName = studentName;
         DateOfBirth = dateOfBirth;
@@ -32,11 +34,11 @@ public class Student {
         Email = email;
     }
 
-    public Student getStudentId() {
+    public String getStudentId() {
         return StudentId;
     }
 
-    public void setStudentId(Student studentId) {
+    public void setStudentId(String studentId) {
         StudentId = studentId;
     }
 

@@ -10,9 +10,6 @@ public class StudentDTO {
     private String PhoneNumber;
     private String Email;
 
-    public StudentDTO() {
-    }
-
     public StudentDTO(String studentId, String studentName, String dateOfBirth, String address, String phoneNumber, String email) {
         StudentId = studentId;
         StudentName = studentName;
@@ -20,6 +17,10 @@ public class StudentDTO {
         Address = address;
         PhoneNumber = phoneNumber;
         Email = email;
+    }
+
+    public StudentDTO() {
+
     }
 
     public String getStudentId() {

@@ -6,6 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import ly.pt.config.FactoryConfiguration;
+import ly.pt.entity.Student;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.io.IOException;
 
