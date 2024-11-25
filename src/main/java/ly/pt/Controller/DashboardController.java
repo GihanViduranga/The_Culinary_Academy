@@ -56,7 +56,15 @@ public class DashboardController {
 
     @FXML
     void btnCulinaryProgramsOnAction(ActionEvent event) {
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/culinaryPrograms.fxml"));
+        Parent rootNode = null;
+        try {
+            rootNode = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        root.getChildren().clear();
+        root.getChildren().add(rootNode);
     }
 
     @FXML

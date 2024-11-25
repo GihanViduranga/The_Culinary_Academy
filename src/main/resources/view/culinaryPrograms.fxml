@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -44,10 +43,6 @@
                 <Font name="System Bold" size="18.0" />
             </font>
         </Text>
-        <Label fx:id="lblProgramID" layoutX="238.0" layoutY="316.0" prefHeight="27.0" prefWidth="219.0" textFill="WHITE">
-         <font>
-            <Font size="18.0" />
-         </font></Label>
         <Text fill="WHITE" layoutX="110.0" layoutY="569.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fee (LKR)">
             <font>
                 <Font name="System Bold" size="18.0" />
@@ -98,5 +93,16 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </JFXButton>
+      <TextField fx:id="txtProgramID" layoutX="110.0" layoutY="349.0" prefHeight="27.0" prefWidth="272.0">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <effect>
+            <DropShadow />
+         </effect>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
     </children>
 </AnchorPane>

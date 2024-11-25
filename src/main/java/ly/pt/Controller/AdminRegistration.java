@@ -59,7 +59,6 @@ public class AdminRegistration {
                 isSaved = false;
             }
             if (isSaved) {
-                /*initialize();*/
                 new Alert(Alert.AlertType.INFORMATION, "Admin saved successfully").show();
             }else {
                 new Alert(Alert.AlertType.INFORMATION, "Admin saved Unsuccessfully").show();
