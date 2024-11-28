@@ -2,99 +2,174 @@ package ly.pt.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import ly.pt.bo.BOFactory;
+import ly.pt.bo.custom.CourseBO;
+import ly.pt.bo.custom.RegistrationBO;
+import ly.pt.bo.custom.StudentBo;
+import ly.pt.entity.Course;
+import ly.pt.entity.Registration;
+import ly.pt.entity.Student;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class StudentRegistration {
 
     @FXML
-    private ComboBox<?> cmbProgramName;
+    private Label Amountduetxt;
 
     @FXML
-    private ComboBox<?> cmbSelectStatus;
+    private Label CourseDuration;
 
     @FXML
-    private ComboBox<?> cmbStudentID;
+    private TextField Paymenttxt;
 
     @FXML
-    private TableColumn<?, ?> colBalance;
+    private TableView<?> RegisterTable;
 
     @FXML
-    private TableColumn<?, ?> colPaidAmount;
+    private ComboBox<Integer> StudentIDComboBox;
 
     @FXML
-    private TableColumn<?, ?> colProgramFee;
+    private ComboBox<String> StudentIDComboCourseComboBox;
 
     @FXML
-    private TableColumn<?, ?> colProgramID;
+    private ComboBox<String> cmbSelectStatus;
 
     @FXML
-    private TableColumn<?, ?> colProgramName;
+    private TableColumn<?, ?> colPayment;
+
+    @FXML
+    private TableColumn<?, ?> colProgram;
 
     @FXML
     private TableColumn<?, ?> colStatus;
 
     @FXML
-    private Label lblAddress;
+    private TableColumn<?, ?> colcid;
 
     @FXML
-    private Label lblBalance;
+    private TableColumn<?, ?> coldate;
 
     @FXML
-    private Label lblDateOfBirth;
+    private TableColumn<?, ?> coldueAmonut;
 
     @FXML
-    private Label lblDuration;
+    private TableColumn<?, ?> colduration;
 
     @FXML
-    private Label lblEmail;
+    private TableColumn<?, ?> colsid;
 
     @FXML
-    private Label lblPhoneNumber;
+    private TableColumn<?, ?> colsname;
 
     @FXML
-    private Label lblProgramFee;
+    private Label courseName;
 
     @FXML
-    private Label lblProgramID;
+    private DatePicker datecombo;
 
     @FXML
-    private Label lblStudentName;
+    private Label fee;
 
     @FXML
-    private Label lblTotal;
+    private Label registrationNum;
 
     @FXML
     private AnchorPane root;
 
     @FXML
-    private TableView<?> tblStudentRegistration;
+    private Label studentMobile;
 
     @FXML
-    private TextField txtPaidAmount;
+    private Label studentName;
 
-    @FXML
-    void btnAddNewOnAction(ActionEvent event) {
+    RegistrationBO registrationBO = (RegistrationBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.REGISTRATION);
+    StudentBo studentBO = (StudentBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.STUDENT);
+    CourseBO courseBO = (CourseBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.COURSE);
+
+    public void initialize(){
+        getStudentId();
+        getCourseId();
+        getStatus();
 
     }
 
     @FXML
-    void btnAddToTableOnAction(ActionEvent event) {
+    void RegisterComfirmOnAction(ActionEvent event) {
+        Long id = 0L;
+        Integer studentId = StudentIDComboBox.getValue();
+        String courseId = StudentIDComboCourseComboBox.getValue();
+        String studentFName = studentName.getText();
+        String courseFullName = courseName.getText();
+        String courseDuration = CourseDuration.getText();
+        LocalDate RegDate = datecombo.getValue();
+        LocalDate PayDate = datecombo.getValue();
+        double payment = Double.parseDouble(Paymenttxt.getText());
+        double dueAmount = ((Double.parseDouble(fee.getText()))-payment);
+        String status = cmbSelectStatus.getValue();
 
-    }
 
-    @FXML
-    void btnRegisterOnAction(ActionEvent event) {
+        Student student = null;
+        try {
+            student = studentBO.serachbyIDS(studentId);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        Course course = null;
+        try {
+            course = courseBO.serachbyCIDs(courseId);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        if (student == null) {
+            new Alert(Alert.AlertType.ERROR, "Student not found!").show();
+            return;
+        }
+        if (course == null) {
+            new Alert(Alert.AlertType.ERROR, "Course not found!").show();
+            return;
+        }
+
+        Registration registration = new Registration(id,courseDuration,RegDate,PayDate,payment,dueAmount,studentFName,courseFullName,status,student,course);
+        boolean isSaved = false;
+        try {
+             isSaved = registrationBO.saveRegistration(registration);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        if(isSaved){
+            new Alert(Alert.AlertType.INFORMATION, "Registration successful!").show();
+        }else{
+            new Alert(Alert.AlertType.ERROR, "Registration failed!").show();
+        }
 
     }
 
     @FXML
     void cmbProgramNameOnAction(ActionEvent event) {
+        String cid = StudentIDComboCourseComboBox.getValue();
+        try{
+            Course course = courseBO.serachbyCIDs(cid);
+            courseName.setText(course.getProgramName());
+            fee.setText(String.valueOf(course.getFee()));
+            CourseDuration.setText(course.getDuration());
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -104,7 +179,47 @@ public class StudentRegistration {
 
     @FXML
     void cmbStudentIdOnAction(ActionEvent event) {
+        Integer sid = StudentIDComboBox.getValue();
+        try{
+            Student student = studentBO.serachbyIDS(sid);
+            studentName.setText(student.getFirstName());
+            System.out.printf(student.getFirstName());
+            studentMobile.setText(student.getPhoneNumber());
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void getStudentId(){
+        try {
+            List<Student> allStudents = studentBO.getAllStudent();
+            for (Student s : allStudents) {
+                StudentIDComboBox.getItems().add(s.getId());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void getCourseId(){
+        try {
+            List<Course> allCourses = courseBO.getAllCourse();
+            for (Course c : allCourses) {
+                StudentIDComboCourseComboBox.getItems().add(c.getProgramId());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void getStatus(){
+        List<String> statusList = new ArrayList<>();
+
+        // Add strings to the list
+        statusList.add("Paid");
+        statusList.add("Pending");
+
+        for (String status : statusList){
+            cmbSelectStatus.getItems().add(status);
+        }
     }
 
 }

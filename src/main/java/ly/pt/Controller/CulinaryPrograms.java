@@ -1,145 +1,163 @@
 package ly.pt.Controller;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import ly.pt.bo.custom.CulinaryProgramBO;
-import ly.pt.bo.custom.impl.CulinaryProgramBOImpl;
-import ly.pt.model.CulinaryProgramsDTO;
-import ly.pt.viewTm.ProgramsTm;
+import ly.pt.bo.BOFactory;
+import ly.pt.bo.custom.CourseBO;
+import ly.pt.entity.Course;
+import ly.pt.entity.Registration;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CulinaryPrograms {
 
     @FXML
+    private TableView<?> CourseTable;
+
+    @FXML
+    private TextField ProgramNametxt;
+
+    @FXML
+    private TextField Programidtxt;
+
+    @FXML
+    private TableColumn<?, ?> colDuration;
+
+    @FXML
+    private TableColumn<?, ?> colName;
+
+    @FXML
+    private TableColumn<?, ?> colProgramID;
+
+    @FXML
+    private TableColumn<?, ?> colfee;
+
+    @FXML
+    private TextField durationtxt;
+
+    @FXML
+    private TextField feetxt;
+
+    @FXML
     private AnchorPane root;
 
-    @FXML
-    private TextField txtProgramID;
+    CourseBO courseBO = (CourseBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.COURSE);
 
     @FXML
-    private TableColumn<?, ?> tblDuration;
-
-    @FXML
-    private TableColumn<?, ?> tblFee;
-
-    @FXML
-    private TableColumn<?, ?> tblProgramID;
-
-    @FXML
-    private TableColumn<?, ?> tblProgramName;
-
-    @FXML
-    private TableView<ProgramsTm> tblProgramTable;
-
-    @FXML
-    private TextField txtDuration;
-
-    @FXML
-    private TextField txtFee;
-
-    @FXML
-    private TextField txtProgramName;
-
-    CulinaryProgramBO culinaryProgramBO = new CulinaryProgramBOImpl();
-
-    public void initialize(){
-        System.out.println("Initializing");
-        loadAllPrograms();
-        setCellValueFactory();
-    }
-
-    private void setCellValueFactory() {
-        tblProgramID.setCellValueFactory(new PropertyValueFactory<>("programId"));
-        tblProgramName.setCellValueFactory(new PropertyValueFactory<>("programName"));
-        tblDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
-        tblFee.setCellValueFactory(new PropertyValueFactory<>("fee"));
-    }
-
-    private void loadAllPrograms() {
-        ObservableList<ProgramsTm> programs = FXCollections.observableArrayList();
-
-        List<CulinaryProgramsDTO> programsDTOs = culinaryProgramBO.getAllPrograms();
-
-        for (CulinaryProgramsDTO program : programsDTOs) {
-            ProgramsTm programTm = new ProgramsTm(
-                    program.getProgramId(),
-                    program.getProgramName(),
-                    program.getDuration(),
-                    program.getFee()
-            );
-            programs.add(programTm);
-        }
-        tblProgramTable.setItems(programs);
-        System.out.println(programs);
+    void btnClearOnAction(ActionEvent event) {
+        clearTextFiled();
     }
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-        String id = txtProgramID.getText();
-        String programName = txtProgramName.getText();
-        String duration = txtDuration.getText();
-        String fee = txtFee.getText();
+        String id = Programidtxt.getText();
 
-        CulinaryProgramsDTO culinaryProgramsDTO = new CulinaryProgramsDTO(id, programName, duration, fee);
-
-        try{
-            boolean isDeleted = culinaryProgramBO.DeleteProgram(id,culinaryProgramsDTO);
-            if(isDeleted){
-                new Alert(Alert.AlertType.INFORMATION, "Program deleted!").show();
-            } else{
-                new Alert(Alert.AlertType.INFORMATION, "The program with ID: " + id + " does not exist").show();
+        try {
+            boolean c = courseBO.deleteCourse(id);
+            if (c) {
+                new Alert(Alert.AlertType.INFORMATION, "Course Delete Successfully");
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Course Delete Unsuccessful");
             }
-        }catch (Exception e){
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+        /*loadallvalues();*/
+        clearTextFiled();
     }
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
-        String id = txtProgramID.getText();
-        String programName = txtProgramName.getText();
-        String duration = txtDuration.getText();
-        String fee = txtFee.getText();
+        int id = 0;
+        String pid = Programidtxt.getText();
+        String pname = ProgramNametxt.getText();
+        String duration = durationtxt.getText();
+        double fee = Double.parseDouble(feetxt.getText());
+        List<Registration> list = new ArrayList<>();
 
-        CulinaryProgramsDTO culinaryProgramsDTO = new CulinaryProgramsDTO(id, programName, duration, fee);
 
-        try{
-            boolean isSaved = culinaryProgramBO.SaveProgram(culinaryProgramsDTO);
-            if(isSaved){
-                new Alert(Alert.AlertType.INFORMATION, "Program saved!").show();
-            }else{
-                new Alert(Alert.AlertType.INFORMATION, "The data you entered is incorrect").show();
-            }
-        } catch (Exception e){
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        Course course = new Course(id,pid, pname, duration, fee,list);
+
+        boolean c = false;
+
+        try {
+
+            c = courseBO.saveCourse(course);
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+        if (c) {
+            new Alert(Alert.AlertType.CONFIRMATION, "Customer SAVE Success");
+        } else {
+
+            new Alert(Alert.AlertType.ERROR, "Student save UnSuccess");
+        }
+        /*loadallvalues();*/
+        clearTextFiled();
     }
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-        String id = txtProgramID.getText();
-        String programName = txtProgramName.getText();
-        String duration = txtDuration.getText();
-        String fee = txtFee.getText();
+        int id = 0;
+        String pid = Programidtxt.getText();
+        String pname = ProgramNametxt.getText();
+        String duration = durationtxt.getText();
+        double fee = Double.parseDouble(feetxt.getText());
+        List<Registration> list = new ArrayList<>();
 
-        CulinaryProgramsDTO culinaryProgramsDTO = new CulinaryProgramsDTO(id, programName, duration, fee);
 
-        try{
-            boolean isUpdated = culinaryProgramBO.UpdateProgram(culinaryProgramsDTO);
-            if(isUpdated){
-                new Alert(Alert.AlertType.INFORMATION, "Program updated!").show();
-            } else{
-                new Alert(Alert.AlertType.INFORMATION, "The data you entered is incorrect").show();
-            }
-        } catch (Exception e){
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        Course course = new Course(id,pid, pname, duration, fee,list);
+
+        boolean c = false;
+
+        try {
+
+            c = courseBO.updateCourse(course);
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+        if (c) {
+            new Alert(Alert.AlertType.CONFIRMATION, "Customer update successfully....!!! :)").show();
+
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Student update unsuccessfully....!!! :(").show();
+        }
+        /*loadallvalues();*/
+        clearTextFiled();
+    }
+
+    @FXML
+    void txtIdOnAction(ActionEvent event) {
+        String id = Programidtxt.getText();
+        ArrayList<Course> courses = null;
+        try {
+            courses = (ArrayList<Course>) courseBO.SearchCID(id);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        Programidtxt.setText(courses.get(0).getProgramId());
+        ProgramNametxt.setText(courses.get(0).getProgramName());
+        durationtxt.setText(courses.get(0).getDuration());
+        feetxt.setText(String.valueOf(courses.get(0).getFee()));
+    }
+    public void clearTextFiled() {
+        Programidtxt.clear();
+        ProgramNametxt.clear();
+        durationtxt.clear();
+        feetxt.clear();
     }
 
 }

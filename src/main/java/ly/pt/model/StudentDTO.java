@@ -1,73 +1,37 @@
 package ly.pt.model;
 
-import ly.pt.entity.Student;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public class StudentDTO {
-    private String StudentId;
-    private String StudentName;
-    private String DateOfBirth;
-    private String Address;
-    private String PhoneNumber;
-    private String Email;
+import java.time.LocalDate;
 
-    public StudentDTO(String studentId, String studentName, String dateOfBirth, String address, String phoneNumber, String email) {
-        StudentId = studentId;
-        StudentName = studentName;
-        DateOfBirth = dateOfBirth;
-        Address = address;
-        PhoneNumber = phoneNumber;
-        Email = email;
-    }
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class StudentDto {
 
-    public StudentDTO() {
 
-    }
+    //private int id;
 
-    public String getStudentId() {
-        return StudentId;
-    }
+    private String firstName;
+    private String lastName;
 
-    public void setStudentId(String studentId) {
-        StudentId = studentId;
-    }
+    private String address;
+    private String email;
 
-    public String getStudentName() {
-        return StudentName;
-    }
+    /*
+            @Pattern(regexp = "^\\d{10}$", message = "Invalid phone number")
+    */
+    private String phoneNumber;
 
-    public void setStudentName(String studentName) {
-        StudentName = studentName;
-    }
+    private LocalDate enrollmentDate;
+    private String user;
 
-    public String getDateOfBirth() {
-        return DateOfBirth;
-    }
+/*
+        @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+*/
+    /* private Set<Enrollment> enrollments = new HashSet<>();*/
 
-    public void setDateOfBirth(String dateOfBirth) {
-        DateOfBirth = dateOfBirth;
-    }
 
-    public String getAddress() {
-        return Address;
-    }
-
-    public void setAddress(String address) {
-        Address = address;
-    }
-
-    public String getPhoneNumber() {
-        return PhoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        PhoneNumber = phoneNumber;
-    }
-
-    public String getEmail() {
-        return Email;
-    }
-
-    public void setEmail(String email) {
-        Email = email;
-    }
 }

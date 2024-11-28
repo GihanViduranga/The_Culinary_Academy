@@ -1,192 +1,193 @@
 package ly.pt.Controller;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import ly.pt.bo.custom.StudentBO;
-import ly.pt.bo.custom.impl.StudentBOImpl;
-import ly.pt.model.StudentDTO;
-import ly.pt.viewTm.StudentTm;
+import ly.pt.bo.BOFactory;
+import ly.pt.bo.custom.AdminBO;
+import ly.pt.bo.custom.StudentBo;
+import ly.pt.dao.DAOFactory;
+import ly.pt.dao.custom.StudentDao;
+import ly.pt.entity.Registration;
+import ly.pt.entity.Student;
 
+import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDetail {
 
     @FXML
-    private DatePicker dtpDateOfBirth;
+    private TableView<?> StudentTable;
 
     @FXML
-    private Label lblStudentID;
+    private TextField addresstxt;
+
+    @FXML
+    private TableColumn<?, ?> coladdress;
+
+    @FXML
+    private TableColumn<?, ?> colemail;
+
+    @FXML
+    private TableColumn<?, ?> colfirstname;
+
+    @FXML
+    private TableColumn<?, ?> colid;
+
+    @FXML
+    private TableColumn<?, ?> collastname;
+
+    @FXML
+    private TableColumn<?, ?> colnumber;
+
+    @FXML
+    private DatePicker datecombo;
+
+    @FXML
+    private TextField emailtxt;
+
+    @FXML
+    private TextField firstNametxt;
+
+    @FXML
+    private TextField idtxt;
+
+    @FXML
+    private TextField lastnametxt;
+
+    @FXML
+    private TextField phonenumbertxt;
 
     @FXML
     private AnchorPane root;
 
-    @FXML
-    private TableColumn<?, ?> tblAddress;
+    private String userRole;
+
+
+    StudentBo studentBo = (StudentBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.STUDENT);
 
     @FXML
-    private TableColumn<?, ?> tblDateOfBirth;
-
-    @FXML
-    private TableColumn<?, ?> tblEmail;
-
-    @FXML
-    private TableColumn<?, ?> tblName;
-
-    @FXML
-    private TableColumn<?, ?> tblPhoneNumber;
-
-    @FXML
-    private TableView<StudentTm> tblStudentTable;
-
-    @FXML
-    private TableColumn<?, ?> tblStudentID;
-
-    @FXML
-    private TextField txtAddress;
-
-    @FXML
-    private TextField txtEmail;
-
-    @FXML
-    private TextField txtPhoneNumber;
-
-    @FXML
-    private TextField txtStudentID;
-
-    @FXML
-    private TextField txtStudentName;
-
-    StudentBO studentBO = new StudentBOImpl();
-
-    public void initialize(){
-        loadAllStudents();
-        setCellValueFactory();
-    }
-
-    private void setCellValueFactory(){
-        tblStudentID.setCellValueFactory(new PropertyValueFactory<>("StudentId"));
-        tblName.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        tblDateOfBirth.setCellValueFactory(new PropertyValueFactory<>("DateOfBirth"));
-        tblAddress.setCellValueFactory(new PropertyValueFactory<>("Address"));
-        tblPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("PhoneNumber"));
-        tblEmail.setCellValueFactory(new PropertyValueFactory<>("Email"));
-    }
-
-    private void loadAllStudents() {
-        ObservableList<StudentTm> students = FXCollections.observableArrayList();
-
-        List<StudentDTO> studentsDTO = studentBO.getAllStudents();
-
-        for (StudentDTO student : studentsDTO) {
-            StudentTm studentTm = new StudentTm(
-                    student.getStudentId(),
-                    student.getStudentName(),
-                    student.getDateOfBirth().toString(),
-                    student.getAddress(),
-                    student.getPhoneNumber(),
-                    student.getEmail()
-            );
-            students.add(studentTm);
-        }
-        tblStudentTable.setItems(students);
+    void btnClearOnAction(ActionEvent event) {
+        idtxt.setText("");
+        firstNametxt.setText("");
+        lastnametxt.setText("");
+        addresstxt.setText("");
+        phonenumbertxt.setText("");
+        emailtxt.setText("");
     }
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-        String id = txtStudentID.getText();
-        String name = txtStudentName.getText();
-        String dateOfBirth = dtpDateOfBirth.getValue().toString();
-        String address = txtAddress.getText();
-        String phoneNumber = txtPhoneNumber.getText();
-        String email = txtEmail.getText();
-
-        StudentDTO studentDTO = new StudentDTO(id, name, dateOfBirth, address, phoneNumber, email);
+        int id = Integer.parseInt(idtxt.getText());
 
         try {
-            boolean isDeleted = studentBO.deleteStudent(id, studentDTO);
-            if (isDeleted) {
-                new Alert(Alert.AlertType.INFORMATION, "Student deleted!").show();
+            boolean b = studentBo.deleteStudent(id);
+            if (b) {
+                new Alert(Alert.AlertType.INFORMATION, "Student Delete Success");
             } else {
-                new Alert(Alert.AlertType.INFORMATION, "The student you selected does not exist").show();
-            }
-        }catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        }
-    }
-
-    @FXML
-    void btnSaveOnAction(ActionEvent event) {
-        String id = txtStudentID.getText();
-        String name = txtStudentName.getText();
-        String dateOfBirth = String.valueOf(dtpDateOfBirth.getValue());
-        String address = txtAddress.getText();
-        String phoneNumber = txtPhoneNumber.getText();
-        String email = txtEmail.getText();
-
-        StudentDTO studentDTO = new StudentDTO(id, name, dateOfBirth, address, phoneNumber, email);
-
-        try {
-            boolean isSaved = studentBO.saveStudent(studentDTO);
-            if (isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Student saved!").show();
-            } else {
-                new Alert(Alert.AlertType.INFORMATION, "The data you entered is incorrect").show();
+                new Alert(Alert.AlertType.ERROR, "Student Delete Failed");
             }
         } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+            e.printStackTrace();
         }
+        clearTextFiled();
+        /*loadallvalues();*/
     }
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-        String id = txtStudentID.getText();
-        String name = txtStudentName.getText();
-        String dateOfBirth = dtpDateOfBirth.getValue().toString();
-        String address = txtAddress.getText();
-        String phoneNumber = txtPhoneNumber.getText();
-        String email = txtEmail.getText();
+        int id = Integer.parseInt(idtxt.getText());
+        String fn = firstNametxt.getText();
+        String ln = lastnametxt.getText();
+        String address = addresstxt.getText();
+        String email = emailtxt.getText();
+        String number = phonenumbertxt.getText();
+        LocalDate enrollmentDate = datecombo.getValue();
+        List<Registration> list = new ArrayList<>();
 
-        StudentDTO studentDTO = new StudentDTO(id, name, dateOfBirth, address, phoneNumber, email);
+
+        Student student = new Student(id,fn,ln,address,email,number,enrollmentDate,list,userRole);
+
+
+        boolean s = false;
 
         try {
-            boolean isUpdated = studentBO.updateStudent(studentDTO);
-            if (isUpdated) {
-                new Alert(Alert.AlertType.INFORMATION, "Student updated!").show();
-            } else {
-                new Alert(Alert.AlertType.INFORMATION, "The data you entered is incorrect").show();
-            }
+
+            s = studentBo.updateStudent(student);
+
         } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+            e.printStackTrace();
+        }
+        if (s) {
+            new Alert(Alert.AlertType.INFORMATION, "Student Update Success");
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Student Update Failed");
+        }
+        /*loadallvalues();*/
+        clearTextFiled();
+    }
+
+    @FXML
+    void saveOnActionStudent(ActionEvent event) {
+        int id = 0;
+        String fn = firstNametxt.getText();
+        String ln = lastnametxt.getText();
+        String address = addresstxt.getText();
+        String email = emailtxt.getText();
+        String number = phonenumbertxt.getText();
+        LocalDate enrollmentDate = datecombo.getValue();
+        List<Registration> list = new ArrayList<>();
+
+
+
+
+        Student student = new Student(id,fn,ln,address,email,number,enrollmentDate,list,userRole);
+
+
+        boolean s = false;
+
+        try{
+
+            s = studentBo.saveStudent(student);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        /*loadallvalues();*/
+        clearTextFiled();
+
+        if (s) {
+            new Alert(Alert.AlertType.INFORMATION, "Student Save Success");
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Student save UnSuccess");
         }
     }
 
-public void searchStudent(){
-        String id = txtStudentID.getText();
-
-        try {
-            StudentDTO studentDTO = studentBO.search(id);
-            if (studentDTO!= null) {
-                txtStudentName.setText(studentDTO.getStudentName());
-                dtpDateOfBirth.setValue(LocalDate.parse(studentDTO.getDateOfBirth()));
-                txtAddress.setText(studentDTO.getAddress());
-                txtPhoneNumber.setText(studentDTO.getPhoneNumber());
-                txtEmail.setText(studentDTO.getEmail());
-            } else {
-                new Alert(Alert.AlertType.INFORMATION, "The student you selected does not exist").show();
-            }
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        }
-
-}
     @FXML
     void txtStudentIdOnAction(ActionEvent event) {
-        searchStudent();
+        String id = String.valueOf(Integer.parseInt(idtxt.getText()));
+        ArrayList<Student> students = null;
+        try {
+            students = (ArrayList<Student>) studentBo.SearchSID(Integer.parseInt(id));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        firstNametxt.setText(students.get(0).getFirstName());
+        lastnametxt.setText(students.get(0).getLastName());
+        addresstxt.setText(students.get(0).getAddress());
+        phonenumbertxt.setText(students.get(0).getPhoneNumber());
+        emailtxt.setText(students.get(0).getEmail());
     }
+    public void clearTextFiled(){
+        idtxt.setText("");
+        firstNametxt.setText("");
+        lastnametxt.setText("");
+        addresstxt.setText("");
+        phonenumbertxt.setText("");
+        emailtxt.setText("");
+    }
+
 }

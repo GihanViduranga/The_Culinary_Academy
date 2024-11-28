@@ -1,84 +1,42 @@
 package ly.pt.entity;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Entity
 public class Student {
-    @Id
-    private String StudentId;
-    private String StudentName;
-    private String DateOfBirth;
-    private String Address;
-    private String PhoneNumber;
-    private String Email;
 
-    /*@OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<StudentRegistration> studentRegistrations = new ArrayList<>();*/
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private int id;
 
-    public Student() {
+        private String firstName;
 
-    }
+        private String lastName;
 
-    public Student(String studentId, String studentName, String dateOfBirth, String address, String phoneNumber, String email) {
-        StudentId = studentId;
-        StudentName = studentName;
-        DateOfBirth = dateOfBirth;
-        Address = address;
-        PhoneNumber = phoneNumber;
-        Email = email;
-    }
+        private String address;
 
-    public String getStudentId() {
-        return StudentId;
-    }
+        @Column(unique = true)
+        private String email;
 
-    public void setStudentId(String studentId) {
-        StudentId = studentId;
-    }
+        private String phoneNumber;
 
-    public String getStudentName() {
-        return StudentName;
-    }
+        private LocalDate enrollmentDate;
 
-    public void setStudentName(String studentName) {
-        StudentName = studentName;
-    }
+        @OneToMany(mappedBy = "student", cascade = {CascadeType.MERGE, CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval = true)
+        private List<Registration> registrations = new ArrayList<>();
 
-    public String getDateOfBirth() {
-        return DateOfBirth;
-    }
 
-    public void setDateOfBirth(String dateOfBirth) {
-        DateOfBirth = dateOfBirth;
-    }
+        private String role;
 
-    public String getAddress() {
-        return Address;
-    }
 
-    public void setAddress(String address) {
-        Address = address;
-    }
-
-    public String getPhoneNumber() {
-        return PhoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        PhoneNumber = phoneNumber;
-    }
-
-    public String getEmail() {
-        return Email;
-    }
-
-    public void setEmail(String email) {
-        Email = email;
-    }
 }

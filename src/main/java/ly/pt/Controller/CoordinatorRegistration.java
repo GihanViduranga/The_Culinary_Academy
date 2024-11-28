@@ -11,18 +11,20 @@ import javafx.scene.layout.AnchorPane;
 
 public class CoordinatorRegistration {
 
-    public AnchorPane root;
     @FXML
     private Label lblCoordinatorID;
+
+    @FXML
+    private AnchorPane root;
+
+    @FXML
+    private TableColumn<?, ?> tblCoordinatorID;
 
     @FXML
     private TableView<?> tblCoordinatorTable;
 
     @FXML
     private TableColumn<?, ?> tblCoordinatorUsername;
-
-    @FXML
-    private TableColumn<?, ?> tblCoordinatorID;
 
     @FXML
     private PasswordField txtCoordinatorPassword;

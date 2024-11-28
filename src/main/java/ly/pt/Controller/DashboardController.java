@@ -6,10 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import ly.pt.config.FactoryConfiguration;
-import ly.pt.entity.Student;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import java.io.IOException;
 
@@ -74,12 +70,21 @@ public class DashboardController {
 
     @FXML
     void btnPaymentDetailsOnAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/path/to/your/FXMLFile.fxml"));
+            Parent rootNode = loader.load();
 
+            root.getChildren().clear();
+            root.getChildren().add(rootNode);
+        } catch (IOException e) {
+            e.printStackTrace(); // For debugging
+            throw new RuntimeException("Failed to load the FXML file.", e);
+        }
     }
 
     @FXML
     void btnStudentProfileOnAction(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/studentDetail.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Student.fxml"));
         Parent rootNode = null;
         try {
             rootNode = loader.load();
@@ -92,7 +97,15 @@ public class DashboardController {
 
     @FXML
     void btnStudentRegistrationOnAction(ActionEvent event) {
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/studentRegistration.fxml"));
+        Parent rootNode = null;
+        try {
+            rootNode = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        root.getChildren().clear();
+        root.getChildren().add(rootNode);
     }
 
 }

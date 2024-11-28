@@ -8,6 +8,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import ly.pt.bo.BOFactory;
+import ly.pt.bo.custom.AdminBO;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 
@@ -21,21 +24,51 @@ public class LoginController {
     @FXML
     private TextField txtUsername;
 
+
+    AdminBO adminBO = (AdminBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ADMIN);
+
+
     @FXML
     void btnLoginInOnAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Dashboard.fxml"));
-        AnchorPane anchorPane = loader.load();
+        String password = txtPasswoard.getText();
 
-        Stage stage = (Stage) rootNode.getScene().getWindow();
-        Scene scene = new Scene(anchorPane);
+        String Adminpassword = getUserIdByUserName();
 
-        stage.setScene(scene);
-        stage.setTitle("Customer Form");
-        stage.show();
+        boolean isPasswordCorrect = BCrypt.checkpw(password,Adminpassword);
+
+        if (isPasswordCorrect) {
+            AnchorPane rootNode = null;
+            try {
+                rootNode = FXMLLoader.load(this.getClass().getResource("/view/Dashboard.fxml"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            Scene scene = new Scene(rootNode);
+
+            Stage stage = (Stage) this.rootNode.getScene().getWindow();
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.setTitle("Forget Password Form");
+        } else {
+            System.out.println("Invalid password. Access denied.");
+        }
+
     }
 
     @FXML
     void forgetPasswordOnAction(ActionEvent event) {
+
+    }
+    public String getUserIdByUserName(){
+        String username = txtUsername.getText();
+        String password = null;
+
+
+        password = adminBO.getIdByUserName(username);
+        return password;
+    }
+    public static void returnID(){
 
     }
 

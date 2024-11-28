@@ -14,7 +14,6 @@ public class StudentBoImpl implements StudentBo {
     /*StudentDao studentDao = (StudentDao) DaoFactory.getDaoFactory().getDAO(DaoFactory.DAOTypes.STUDENT);*/
     StudentDao studentDao = (StudentDao) DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOType.STUDENT);
 
-
     @Override
     public boolean saveStudent(Student entity) throws IOException {
         return studentDao.save(new Student(entity.getId(),entity.getFirstName(),entity.getLastName(),entity.getAddress(),entity.getEmail(),entity.getPhoneNumber(),entity.getEnrollmentDate(),entity.getRegistrations(),entity.getRole()));
