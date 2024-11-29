@@ -113,5 +113,10 @@ public class RegistrationBOImpl implements RegistrationBO {
         return registrationDao.searchByRID(rid);
     }
 
+    @Override
+    public boolean updateRegistration(Registration registration) throws IOException {
+        return registrationDao.update(registration);
+    }
+
 
 }

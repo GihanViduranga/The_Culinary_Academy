@@ -93,39 +93,44 @@
       </Text>
       <AnchorPane fx:id="root" layoutX="438.0" layoutY="118.0" prefHeight="869.0" prefWidth="1467.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#95a5a6" height="200.0" layoutX="59.0" layoutY="57.0" stroke="BLACK" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="3.0" width="410.0" />
-            <Text layoutX="104.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Count" underline="true">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#95a5a6" height="200.0" layoutX="59.0" layoutY="353.0" stroke="BLACK" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="3.0" width="410.0" />
+            <Text layoutX="80.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Discover the art of cooking with hands-on training, expert chefs, and a world of flavors. Perfect for aspiring chefs and food enthusiasts." textAlignment="CENTER" wrappingWidth="367.78125">
                <font>
-                  <Font name="System Bold Italic" size="48.0" />
+                  <Font size="18.0" />
                </font>
             </Text>
-            <Label fx:id="lblStudentCount" layoutX="160.0" layoutY="143.0" prefHeight="93.0" prefWidth="208.0" textAlignment="CENTER" textFill="#ecf0f1">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#95a5a6" height="200.0" layoutX="528.0" layoutY="353.0" stroke="BLACK" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="3.0" width="410.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#95a5a6" height="200.0" layoutX="998.0" layoutY="353.0" stroke="BLACK" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="3.0" width="410.0" />
+            <Text layoutX="104.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ignite Your Culinary Passion 🔥👨‍🍳🍴" wrappingWidth="319.78125">
                <font>
-                  <Font name="System Bold Italic" size="64.0" />
-               </font>
-            </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#95a5a6" height="200.0" layoutX="528.0" layoutY="57.0" stroke="BLACK" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="3.0" width="410.0" />
-            <Text layoutX="573.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Courses Count" underline="true">
-               <font>
-                  <Font name="System Bold Italic" size="48.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Text>
-            <Label fx:id="lblCourseCount" layoutX="629.0" layoutY="143.0" prefHeight="93.0" prefWidth="208.0" textAlignment="CENTER" textFill="#ecf0f1">
+            <Text layoutX="549.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Master the skills to create exquisite dishes, from basics to gourmet. Unleash your creativity in a professional kitchen setting." textAlignment="CENTER" wrappingWidth="367.78125">
                <font>
-                  <Font name="System Bold Italic" size="64.0" />
-               </font>
-            </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#95a5a6" height="200.0" layoutX="998.0" layoutY="57.0" stroke="BLACK" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="3.0" width="410.0" />
-            <Text layoutX="1043.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Count" underline="true">
-               <font>
-                  <Font name="System Bold Italic" size="48.0" />
+                  <Font size="18.0" />
                </font>
             </Text>
-            <Label fx:id="lblAdminCount" layoutX="1096.0" layoutY="146.0" prefHeight="93.0" prefWidth="208.0" textAlignment="CENTER" textFill="#ecf0f1">
+            <Text layoutX="573.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Where Taste Meets Technique 🍽✨🍳" wrappingWidth="319.78125">
                <font>
-                  <Font name="System Bold Italic" size="64.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
-            </Label>
+            </Text>
+            <Text layoutX="1019.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Learn, cook, and thrive in a dynamic environment. Transform your love for food into a rewarding career with our tailored courses." textAlignment="CENTER" wrappingWidth="367.78125">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="1043.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Crafting Culinary Excellence 🧑‍🍳🌟🥘" wrappingWidth="319.78125">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="488.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME" underline="true" wrappingWidth="489.78125">
+               <font>
+                  <Font name="System Bold" size="96.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
       <JFXButton buttonType="RAISED" layoutX="47.0" layoutY="444.0" onAction="#btnStudentRegistrationOnAction" prefHeight="38.0" prefWidth="319.0" style="-fx-background-color: #d35400;" text="STUDENT REGISTRATION" textFill="WHITE">
