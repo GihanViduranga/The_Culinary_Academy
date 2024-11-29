@@ -1,16 +1,19 @@
 package ly.pt.Controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import ly.pt.Utill.Regex;
 import ly.pt.bo.BOFactory;
-import ly.pt.bo.custom.AdminBO;
 import ly.pt.bo.custom.StudentBo;
-import ly.pt.dao.DAOFactory;
-import ly.pt.dao.custom.StudentDao;
 import ly.pt.entity.Registration;
 import ly.pt.entity.Student;
+import ly.pt.viewTm.StudentTM;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -20,7 +23,7 @@ import java.util.List;
 public class StudentDetail {
 
     @FXML
-    private TableView<?> StudentTable;
+    private TableView<StudentTM> StudentTable;
 
     @FXML
     private TextField addresstxt;
@@ -69,6 +72,43 @@ public class StudentDetail {
 
     StudentBo studentBo = (StudentBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.STUDENT);
 
+    public void initialize(){
+        loadAllStudent();
+        setCellValueFactory();
+    }
+
+    private void setCellValueFactory() {
+        colid.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colfirstname.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
+        collastname.setCellValueFactory(new PropertyValueFactory<>("LastName"));
+        colnumber.setCellValueFactory(new PropertyValueFactory<>("PhoneNumber"));
+        coladdress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colemail.setCellValueFactory(new PropertyValueFactory<>("email"));
+    }
+
+    private void loadAllStudent() {
+        ObservableList<StudentTM> students = FXCollections.observableArrayList();
+        List<Student> studentDTO = null;
+        try {
+            studentDTO = studentBo.getAllStudent();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        for(Student student : studentDTO){
+            StudentTM studentTM =new StudentTM(
+                    student.getId(),
+                    student.getFirstName(),
+                    student.getLastName(),
+                    student.getPhoneNumber(),
+                    student.getAddress(),
+                    student.getEmail()
+            );
+            students.add(studentTM);
+        }
+        StudentTable.setItems(students);
+    }
+
     @FXML
     void btnClearOnAction(ActionEvent event) {
         idtxt.setText("");
@@ -86,15 +126,14 @@ public class StudentDetail {
         try {
             boolean b = studentBo.deleteStudent(id);
             if (b) {
-                new Alert(Alert.AlertType.INFORMATION, "Student Delete Success");
+                new Alert(Alert.AlertType.INFORMATION, "Student Delete Success").show();
             } else {
-                new Alert(Alert.AlertType.ERROR, "Student Delete Failed");
+                new Alert(Alert.AlertType.ERROR, "Student Delete Failed").show();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         clearTextFiled();
-        /*loadallvalues();*/
     }
 
     @FXML
@@ -122,9 +161,9 @@ public class StudentDetail {
             e.printStackTrace();
         }
         if (s) {
-            new Alert(Alert.AlertType.INFORMATION, "Student Update Success");
+            new Alert(Alert.AlertType.INFORMATION, "Student Update Success").show();
         }else {
-            new Alert(Alert.AlertType.ERROR, "Student Update Failed");
+            new Alert(Alert.AlertType.ERROR, "Student Update Failed").show();
         }
         /*loadallvalues();*/
         clearTextFiled();
@@ -152,18 +191,18 @@ public class StudentDetail {
         try{
 
             s = studentBo.saveStudent(student);
+            if (s) {
+                new Alert(Alert.AlertType.INFORMATION, "Student Save Success").show();
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Student save UnSuccess").show();
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        /*loadallvalues();*/
         clearTextFiled();
 
-        if (s) {
-            new Alert(Alert.AlertType.INFORMATION, "Student Save Success");
-        }else {
-            new Alert(Alert.AlertType.ERROR, "Student save UnSuccess");
-        }
+
     }
 
     @FXML
@@ -189,5 +228,48 @@ public class StudentDetail {
         phonenumbertxt.setText("");
         emailtxt.setText("");
     }
+    public boolean isValied(){
+        /*boolean IdValid = Regex.setTextColor(lk.gsbp.Utill.TextField.IDC, txtCustomerId);
+        boolean nameValid = Regex.setTextColor(lk.gsbp.Utill.TextField.NAME, txtCustomerName);
+        boolean addressValid = Regex.setTextColor(lk.gsbp.Utill.TextField.ADDRESS, txtCustomerAddress);
+        boolean contactValid = Regex.setTextColor(lk.gsbp.Utill.TextField.CONTACT, txtCustomerContact);
+        boolean emailValid = Regex.setTextColor(lk.gsbp.Utill.TextField.EMAIL, txtCustomerEmail);
 
+        return IdValid && nameValid && addressValid && contactValid && emailValid;*/
+        boolean IdValid = Regex.setTextColour(ly.pt.Utill.TextField.NUMBERS, idtxt);
+        boolean FirstNameValid = Regex.setTextColour(ly.pt.Utill.TextField.NAME, firstNametxt);
+        boolean LastNameValid = Regex.setTextColour(ly.pt.Utill.TextField.NAME, lastnametxt);
+        boolean PhoneNumberValid = Regex.setTextColour(ly.pt.Utill.TextField.CONTACT, phonenumbertxt);
+        boolean EmailValid = Regex.setTextColour(ly.pt.Utill.TextField.EMAIL, emailtxt);
+        boolean AddressValid = Regex.setTextColour(ly.pt.Utill.TextField.ADDRESS, addresstxt);
+
+        return IdValid && FirstNameValid && LastNameValid && PhoneNumberValid && EmailValid && AddressValid;
+    }
+    /*public void CustomerIdOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.gsbp.Utill.TextField.IDC, txtCustomerId);
+    }*/
+
+    public void txtFirstNameOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColour(ly.pt.Utill.TextField.NAME, firstNametxt);
+    }
+
+    public void txtAddressOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColour(ly.pt.Utill.TextField.ADDRESS, addresstxt);
+    }
+
+    public void txtPhoneNumberOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColour(ly.pt.Utill.TextField.CONTACT, phonenumbertxt);
+    }
+
+    public void txtEmailOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColour(ly.pt.Utill.TextField.EMAIL, emailtxt);
+    }
+
+    public void txtStudentIdOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColour(ly.pt.Utill.TextField.NUMBERS, idtxt);
+    }
+
+    public void txtLastNameOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColour(ly.pt.Utill.TextField.NAME, lastnametxt);
+    }
 }

@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -51,15 +52,34 @@ public class LoginController {
             stage.centerOnScreen();
             stage.setTitle("Forget Password Form");
         } else {
-            System.out.println("Invalid password. Access denied.");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Login Failed");
+            alert.setContentText("Incorrect Username or Password!");
+            alert.showAndWait();
         }
 
     }
 
     @FXML
     void forgetPasswordOnAction(ActionEvent event) {
-
+        navigateToForgotPassword();
     }
+    public void navigateToForgotPassword()  {
+        AnchorPane rootNode = null;
+        try {
+            rootNode = FXMLLoader.load(this.getClass().getResource("/view/forgetPassword.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        Scene scene = new Scene(rootNode);
+
+        Stage stage = (Stage) this.rootNode.getScene().getWindow();
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.setTitle("Forget Password Form");
+    }
+
     public String getUserIdByUserName(){
         String username = txtUsername.getText();
         String password = null;
@@ -67,9 +87,6 @@ public class LoginController {
 
         password = adminBO.getIdByUserName(username);
         return password;
-    }
-    public static void returnID(){
-
     }
 
 }

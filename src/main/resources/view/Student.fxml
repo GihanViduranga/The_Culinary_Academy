@@ -7,7 +7,6 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
-
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -29,7 +28,7 @@
                 <Font name="System Bold" size="18.0" />
             </font>
         </Text>
-        <TextField fx:id="firstNametxt" layoutX="88.0" layoutY="231.0" prefHeight="27.0" prefWidth="272.0">
+        <TextField fx:id="firstNametxt" layoutX="88.0" layoutY="231.0" onKeyReleased="#txtFirstNameOnKeyReleased" prefHeight="27.0" prefWidth="272.0">
             <cursor>
                 <Cursor fx:constant="TEXT" />
             </cursor>
@@ -65,7 +64,7 @@
             <TableColumn fx:id="colnumber" minWidth="0.0" prefWidth="182.0" text="Phone Number" />
             </columns>
         </TableView>
-        <TextField fx:id="addresstxt" layoutX="88.0" layoutY="394.0" prefHeight="27.0" prefWidth="272.0">
+        <TextField fx:id="addresstxt" layoutX="88.0" layoutY="394.0" onKeyReleased="#txtAddressOnKeyReleased" prefHeight="27.0" prefWidth="272.0">
             <cursor>
                 <Cursor fx:constant="TEXT" />
             </cursor>
@@ -91,7 +90,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="phonenumbertxt" layoutX="88.0" layoutY="469.0" prefHeight="27.0" prefWidth="272.0">
+      <TextField fx:id="phonenumbertxt" layoutX="88.0" layoutY="469.0" onKeyReleased="#txtPhoneNumberOnKeyReleased" prefHeight="27.0" prefWidth="272.0">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
@@ -107,7 +106,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="emailtxt" layoutX="88.0" layoutY="548.0" prefHeight="27.0" prefWidth="272.0">
+      <TextField fx:id="emailtxt" layoutX="88.0" layoutY="548.0" onKeyReleased="#txtEmailOnKeyReleased" prefHeight="27.0" prefWidth="272.0">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
@@ -119,7 +118,7 @@
          </font>
       </TextField>
       <DatePicker fx:id="datecombo" layoutX="88.0" layoutY="319.0" prefHeight="30.0" prefWidth="272.0" />
-      <TextField fx:id="idtxt" layoutX="197.0" layoutY="141.0" onAction="#txtStudentIdOnAction" prefHeight="27.0" prefWidth="272.0">
+      <TextField fx:id="idtxt" layoutX="197.0" layoutY="141.0" onAction="#txtStudentIdOnAction" onKeyReleased="#txtStudentIdOnKeyReleased" prefHeight="27.0" prefWidth="272.0">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
@@ -135,7 +134,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="lastnametxt" layoutX="403.0" layoutY="231.0" prefHeight="27.0" prefWidth="272.0">
+      <TextField fx:id="lastnametxt" layoutX="403.0" layoutY="231.0" onKeyReleased="#txtLastNameOnKeyReleased" prefHeight="27.0" prefWidth="272.0">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>

@@ -1,16 +1,20 @@
 package ly.pt.Controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import ly.pt.bo.BOFactory;
 import ly.pt.bo.custom.CourseBO;
 import ly.pt.entity.Course;
 import ly.pt.entity.Registration;
+import ly.pt.viewTm.CourseTM;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,7 +23,7 @@ import java.util.List;
 public class CulinaryPrograms {
 
     @FXML
-    private TableView<?> CourseTable;
+    private TableView<CourseTM> CourseTable;
 
     @FXML
     private TextField ProgramNametxt;
@@ -50,6 +54,40 @@ public class CulinaryPrograms {
 
     CourseBO courseBO = (CourseBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.COURSE);
 
+    public void initialize() {
+        lordAllPrograms();
+        setCellValueFactory();
+    }
+
+    private void setCellValueFactory() {
+        colProgramID.setCellValueFactory(new PropertyValueFactory<>("ProgramID"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("ProgramName"));
+        colfee.setCellValueFactory(new PropertyValueFactory<>("fee"));
+        colDuration.setCellValueFactory(new PropertyValueFactory<>("Duration"));
+    }
+
+    private void lordAllPrograms() {
+        ObservableList<CourseTM> courseTMS = FXCollections.observableArrayList();
+        List<Course> courses = null;
+        try {
+            courses = courseBO.getAllCourse();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        for(Course course : courses){
+            CourseTM studentTM =new CourseTM(
+                    course.getProgramId(),
+                    course.getProgramName(),
+                    course.getFee(),
+                    course.getDuration()
+            );
+
+            courseTMS.add(studentTM);
+        }
+        CourseTable.setItems(courseTMS);
+    }
+
     @FXML
     void btnClearOnAction(ActionEvent event) {
         clearTextFiled();
@@ -62,9 +100,9 @@ public class CulinaryPrograms {
         try {
             boolean c = courseBO.deleteCourse(id);
             if (c) {
-                new Alert(Alert.AlertType.INFORMATION, "Course Delete Successfully");
+                new Alert(Alert.AlertType.INFORMATION, "Course Delete Successfully").show();
             } else {
-                new Alert(Alert.AlertType.ERROR, "Course Delete Unsuccessful");
+                new Alert(Alert.AlertType.ERROR, "Course Delete Unsuccessful").show();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -97,10 +135,10 @@ public class CulinaryPrograms {
         }
 
         if (c) {
-            new Alert(Alert.AlertType.CONFIRMATION, "Customer SAVE Success");
+            new Alert(Alert.AlertType.CONFIRMATION, "Customer SAVE Success").show();
         } else {
 
-            new Alert(Alert.AlertType.ERROR, "Student save UnSuccess");
+            new Alert(Alert.AlertType.ERROR, "Student save UnSuccess").show();
         }
         /*loadallvalues();*/
         clearTextFiled();

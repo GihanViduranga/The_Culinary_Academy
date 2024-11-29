@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="root" prefHeight="869.0" prefWidth="1467.0" styleClass="ChiledBackground" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ly.pt.Controller.AdminRegistration">
+<AnchorPane fx:id="root" prefHeight="869.0" prefWidth="1467.0" styleClass="ChiledBackground" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ly.pt.Controller.AdminRegistration">
     <children>
-      <ImageView fitHeight="869.0" fitWidth="1467.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Coffee.png" />
-         </image>
-      </ImageView>
         <Text fill="WHITE" layoutX="561.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADMIN REGISTRATION">
             <font>
                 <Font name="Arial Bold" size="48.0" />

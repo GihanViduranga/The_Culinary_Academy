@@ -47,7 +47,15 @@ public class DashboardController {
 
     @FXML
     void btnCoordinatorRegistrationOnAction(ActionEvent event) {
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/coordinatorRegistration.fxml"));
+        Parent rootNode = null;
+        try {
+            rootNode = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        root.getChildren().clear();
+        root.getChildren().add(rootNode);
     }
 
     @FXML
@@ -71,7 +79,7 @@ public class DashboardController {
     @FXML
     void btnPaymentDetailsOnAction(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/path/to/your/FXMLFile.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Payment.fxml"));
             Parent rootNode = loader.load();
 
             root.getChildren().clear();
